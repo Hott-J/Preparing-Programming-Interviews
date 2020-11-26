@@ -24,7 +24,7 @@
 ```
 
 
-:white_check_mark: FizzBuzz(FizzBuzz.py)
+:white_check_mark: [FizzBuzz](FizzBuzz.py)
 
 :white_check_mark: 문자열 뒤집기
 
