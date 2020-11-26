@@ -24,6 +24,12 @@
 ```
 
 
-:white_check_mark: 재귀 호출이 나쁜 이유는 무엇인가?
+:white_check_mark: FizzBuzz
+
+:white_check_mark: 문자열 뒤집기
+
+:white_check_mark: 중복 삭제
+
+:white_check_mark: 중첩 괄호
 
 
