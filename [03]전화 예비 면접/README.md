@@ -26,10 +26,10 @@
 
 :white_check_mark: [FizzBuzz](FizzBuzz.py)
 
-:white_check_mark: 문자열 뒤집기
+:white_check_mark: [문자열 뒤집기](문자열%20뒤집기.py)
 
-:white_check_mark: 중복 삭제
+:white_check_mark: [중복 삭제](중복%20삭제.py)
 
-:white_check_mark: 중첩 괄호
+:white_check_mark: [중첩 괄호](중첩%20괄호.py)
 
 
