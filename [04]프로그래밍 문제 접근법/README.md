@@ -57,4 +57,27 @@ int CompareToMax(int array[], int n){
 }
 ```
 
+```c++
+/* n개의 음이 아닌 정수의 배열에서 가장 큰 값 반환 */
+int CompareToAll(int array[], int n){
+  int i,j;
+  bool isMax;
+  
+  /* 배열에 적어도 하나 이상의 원소가 있는지 확인 */
+  if(n<=0)
+    return -1;
+   
+   for(i=n-1;i>0;i--){
+    isMax=true;
+    for(j=0;j<n;j++){
+      /* 더 큰 값이 있는지 확인 */
+      if(array[j]>array[i]){
+        isMax=false; /* array[i]가 최댓값이 아님 */
+      }
+     */ isMax가 참이면 더 큰 값이 없는 것이므로 array[i]가 최댓값이다 */
+     if(isMax)break;
+   }
+  return array[i];
+}
+```
 
