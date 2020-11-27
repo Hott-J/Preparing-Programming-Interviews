@@ -74,7 +74,7 @@ int CompareToAll(int array[], int n){
       if(array[j]>array[i]){
         isMax=false; /* array[i]가 최댓값이 아님 */
       }
-      */ isMax가 참이면 더 큰 값이 없는 것이므로 array[i]가 최댓값이다 */
+      /* isMax가 참이면 더 큰 값이 없는 것이므로 array[i]가 최댓값이다 */
      if(isMax)break;
    }
   return array[i];
