@@ -33,10 +33,11 @@ Binary Semaphore의 경우 개념적으로 Mutex와 같다고 볼 수 있다.
 :white_check_mark: 모니터
 ```
 Mutex(Lock)와 Condition Variables(Queue라고도 함)을 가지고 있는 Synchronization 메카니즘이다. 
-예를 들어 자바에서 모든 객체는 Object 클래스를 상속 받는다. 이 Object 클래스에는 wait(), notifyAll(), notify() 메소드를 가지고 있는데 
-이게 바로 Condition Variables 역할이라고 보면 된다. 고로 모든 자바 객체는 Monitor를 가지고 있다. 자바에서는 Mutual Exclusion 해결을 위한 구현체로 
-Synchronized 키워드가 있다. 예를 들어 Synchronized가 메소드에 선언되어있고, 쓰레드A가 이미 Lock을 획득해서
-Critical Section(메소드)을 수행중이라고 가정하자. 쓰레드B가 동일한 메소드를 수행하기 위해 해당 Object의Lock을 획득해야 할 것이다. 
+예를 들어 자바에서 모든 객체는 Object 클래스를 상속 받는다. 이 Object 클래스에는 wait(), notifyAll(), notify()
+메소드를 가지고 있는데  이게 바로 Condition Variables 역할이라고 보면 된다. 고로 모든 자바 객체는 Monitor를 가지고 있다. 
+자바에서는 Mutual Exclusion 해결을 위한 구현체로 Synchronized 키워드가 있다. 
+예를 들어 Synchronized가 메소드에 선언되어있고, 쓰레드A가 이미 Lock을 획득해서 Critical Section(메소드)을 수행중이라고 가정하자.
+쓰레드B가 동일한 메소드를 수행하기 위해 해당 Object의Lock을 획득해야 할 것이다. 
 이 Lock이 반환될 때까지 대기를 해야하는데 그 때 사용되는게 바로 Monitor다. 쓰레드A가 Lock을 반환하면 쓰레드B는 기다렸다가 Lock을 획득하게 된다. 
 그리고 Critical Section인 메소드를 수행할 수 있게 된다. 물론 Synchronized 키워드를 사용했을 때 자동적으로 수행되는 내부 동작이고, 
 별도로 명시적인 Monitor를 구현할 수도 있다.아무튼 Monitor는 이렇게 Mutex(Lock)과 Condition Variables을 이용해서 Mutual Exclustion을 해결하고 있다. 
@@ -61,10 +62,10 @@ Condition Variable은 특정 조건을 만족하기를 기다리는 변수라는
 
 :white_check_mark: 데드락
 ```
-두 스레드가 서로 상대방이 쥐고 있는 자물쇠가 풀리기만을 기다리면서 서로 가로막고 있는 상황. 두 개의 서로 다른 스레드에서 서로 상대방이 필요로 하는 자원에 대한
-락을 가지고 있는 경우에 일어난다. 이 경우 꼼짝할 수 없는 상태가 되기 때문에 데드락이라는 이름이 붙었다.
+두 스레드가 서로 상대방이 쥐고 있는 자물쇠가 풀리기만을 기다리면서 서로 가로막고 있는 상황. 
+두 개의 서로 다른 스레드에서 서로 상대방이 필요로 하는 자원에 대한 락을 가지고 있는 경우에 일어난다. 
+이 경우 꼼짝할 수 없는 상태가 되기 때문에 데드락이라는 이름이 붙었다.
 ```
-
 
 :white_check_mark: 스레딩 구문 in Java
 ```java
