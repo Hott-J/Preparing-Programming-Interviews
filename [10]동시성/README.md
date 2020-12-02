@@ -83,7 +83,8 @@ void someMethod(){
 }
 ```
 
-출처: https://about-myeong.tistory.com/34 [명찌의 포스트잇]
+참고 자료 : https://about-myeong.tistory.com/34 [명찌의 포스트잇]
+           https://ju-hy.tistory.com/39
 
 
 
