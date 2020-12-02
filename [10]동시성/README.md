@@ -102,22 +102,22 @@ void someMethod(){
 ```java
 Thread task=new TheTask();
 synchronized(task){
-task.start();
-try{
-task.wait();
-}
-catch(InterruptedException e){
-...//인터럽트 발생시 처리
-}
+  task.start();
+  try{
+    task.wait();
+  }
+  catch(InterruptedException e){
+    ...//인터럽트 발생시 처리
+  }
 }
 ...
 class TheTask extends Thread{
-public void run(){
-synchronized(this){
-...//작업 처리
-this.notifuy();
-}
-}
+  public void run(){
+    synchronized(this){
+      ...//작업 처리
+      this.notifuy();
+    }
+  }
 }
 ```
 
