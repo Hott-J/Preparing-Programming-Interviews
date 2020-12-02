@@ -40,8 +40,9 @@ Mutex(Lock)와 Condition Variables(Queue라고도 함)을 가지고 있는 Synch
 쓰레드B가 동일한 메소드를 수행하기 위해 해당 Object의Lock을 획득해야 할 것이다. 
 이 Lock이 반환될 때까지 대기를 해야하는데 그 때 사용되는게 바로 Monitor다. 쓰레드A가 Lock을 반환하면 쓰레드B는 기다렸다가 Lock을 획득하게 된다. 
 그리고 Critical Section인 메소드를 수행할 수 있게 된다. 물론 Synchronized 키워드를 사용했을 때 자동적으로 수행되는 내부 동작이고, 
-별도로 명시적인 Monitor를 구현할 수도 있다.아무튼 Monitor는 이렇게 Mutex(Lock)과 Condition Variables을 이용해서 Mutual Exclustion을 해결하고 있다. 
-그 외 Monitor의 다른 정의로는 공유자원에 안전하게 접근하기 위해 Mutual Exclusion가 랩핑된 Thread-Safe한 클래스, 객체, 모듈들을 의미하기도 한다.
+별도로 명시적인 Monitor를 구현할 수도 있다.아무튼 Monitor는 이렇게 Mutex(Lock)과 Condition Variables을 이용해서 
+Mutual Exclustion을 해결하고 있다. 그 외 Monitor의 다른 정의로는 공유자원에 안전하게 접근하기 위해 
+Mutual Exclusion가 랩핑된 Thread-Safe한 클래스, 객체, 모듈들을 의미하기도 한다.
 ```
 
 :white_check_mark: 컨디션 변수
