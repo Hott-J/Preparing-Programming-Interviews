@@ -98,6 +98,7 @@ void someMethod(){
 ```
 모니터나 세마포어를 써서 피할 수 있다. 다른 스레드에서 작업이 끝났음을 알려줄 때까지 대기하는 스레드를 sleep 상태로 전환해주면 된다.
 자바에서는 공유하는 객체만 있으면 작업이 끝났음을 알려줄 수 있다.
+```
 ```java
 Thread task=new TheTask();
 synchronized(task){
@@ -118,7 +119,7 @@ this.notifuy();
 }
 }
 }
-
+```
 
 참고 자료 : https://about-myeong.tistory.com/34 , 
 https://ju-hy.tistory.com/39           
