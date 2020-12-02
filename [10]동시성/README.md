@@ -82,6 +82,43 @@ void someMethod(){
   }
 }
 ```
+:white_check_mark: 바쁜 대기
+
+바쁜 대기란 용어를 설명하고 어떻게 하면 바쁜 대기를 피할 수 있는지 말하라.
+
+- 바쁜 대기
+```
+대기 중인 스레드가 활성 상태긴 하지만 실제로는 아무 일도 하지 않는 것을 바쁜 대기라고 부른다. 스레드에서 두 번째 스레드가 끝날 때까지 대기하는 것
+외에는 아무 일도 하지 않음에도 불구하고 프로세서에서는 여전히 이 스레드를 실행시키기 때문에 '바쁜' 대기라고 부르는 것이다.
+바쁜 대기를 사용하게 되면 두 번째 스레드(및 시스템에서 돌아가는 다른 활성 스레드)에서 진짜로 일을 처리하는 데 쓸 수 있을 소중한 프로세서 사이클을
+뺏어가게 된다.
+```
+
+- 피하는 법
+```
+모니터나 세마포어를 써서 피할 수 있다. 다른 스레드에서 작업이 끝났음을 알려줄 때까지 대기하는 스레드를 sleep 상태로 전환해주면 된다.
+자바에서는 공유하는 객체만 있으면 작업이 끝났음을 알려줄 수 있다.
+```java
+Thread task=new TheTask();
+synchronized(task){
+task.start();
+try{
+task.wait();
+}
+catch(InterruptedException e){
+...//인터럽트 발생시 처리
+}
+}
+...
+class TheTask extends Thread{
+public void run(){
+synchronized(this){
+...//작업 처리
+this.notifuy();
+}
+}
+}
+
 
 참고 자료 : https://about-myeong.tistory.com/34 , 
 https://ju-hy.tistory.com/39           
