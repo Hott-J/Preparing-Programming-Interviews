@@ -127,9 +127,6 @@ class TheTask extends Thread{
 세마포의 경우와 비교를 해볼 수 있다. 세마포의 경우 임계구역 앞에 설치되어 초기 값을 설정해 들어갈 수 있는 한계를 놓는다. 들어갈 때 acquire()명령하고 나올 때는 release()명령을 실행시켜 주어야한다. 하지만 이런 관계를 기억하는 것이 힘들다. 이와 반대로 모니터는 따로 명령을 불러줄 필요 없이 함수에 synchronized만 붙여 넣으면 상호배타의 기능을 수행할 수 있다.
 
 
-
-출처: https://about-myeong.tistory.com/34 [명찌의 포스트잇]
-
 참고 자료 : https://about-myeong.tistory.com/34 , 
 https://ju-hy.tistory.com/39,
 
