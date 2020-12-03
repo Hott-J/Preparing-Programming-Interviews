@@ -126,6 +126,42 @@ class TheTask extends Thread{
 자바의 모든 객체는 모니터가 될 수 있다. 배타 동기는 synchronized 키워드를 사용해서 지정할 수 있고 조건 동기는 wait()함수와 notify()함수, notifyAll()함수를 사용한다. 배타 동기를 지정하는 함수들은 공통 자원을 사용하고 있는 경우이다. 공통 자원을 사용할 경우 배타 동기를 선언하는 synchronized라는 키워드를 적어주기만 하면 상호배타의 원리를 만족시키는 함수로 만들어준다. 조건 동기의 경우 wait()함수를 실행하면 진입한 쓰레드를 조건 동기 queue에 블록을 시킨다. notify()함수는 그렇게 블록된 함수를 깨우는데 새로운 쓰레드가 실행하는 방식으로 깨우게 된다. notifyAll()은 모든 쓰레드를 깨우는 것으로 사용할 수 있다.
 세마포의 경우와 비교를 해볼 수 있다. 세마포의 경우 임계구역 앞에 설치되어 초기 값을 설정해 들어갈 수 있는 한계를 놓는다. 들어갈 때 acquire()명령하고 나올 때는 release()명령을 실행시켜 주어야한다. 하지만 이런 관계를 기억하는 것이 힘들다. 이와 반대로 모니터는 따로 명령을 불러줄 필요 없이 함수에 synchronized만 붙여 넣으면 상호배타의 기능을 수행할 수 있다.
 
+:white_check_mark: 생산자/소비자
+
+- 두 개의 세마포어 (empty, full) 로 해결
+- 버퍼 클래스의 add와 remove 메소드를 변경한다.
+```java
+public class IntBuffer
+  private int index;
+  private int[] buffer=new int[8];
+  
+  public synchronized void add(int num){
+    while(index==buffer.length-1){
+      try{
+        wait();
+      }
+      catch(e){}
+    }
+    buffer[index++]=num;
+    notifyAll();
+  }
+  public synchronized int remove(){
+    while(index==0){
+      try{
+        wait();
+      }
+      catch(e){}
+    }
+    int ret=buffer[--index];
+    notifyAll();
+    return ret;
+  }
+}
+```
+버퍼가 가득 차면 생산자가 빈 공간이 생길 때까지 기다릴 수 있도록, 그리고 버퍼가 비었을 때는 새로운 값이 들어올 때까지 소비자가 기다릴 수 있도록 하려면 메서드 안에 있는 코드 변경.
+여러 생산자와 소비자가 같은 버퍼를 동시에 사용할 수 있기 때문에 두 스레드만 사용할 수 있는 풀이에 비해 더 일반적인 용도로 쓸 수 있는 답이 된다.
+
+:white_check_mark: 철학자들의 
 
 참고 자료 : https://about-myeong.tistory.com/34 , 
 https://ju-hy.tistory.com/39,
