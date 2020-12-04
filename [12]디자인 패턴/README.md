@@ -3,7 +3,7 @@
 ### :one::two: 장 디자인 패턴
 
 <br>
-:white_check_mark: static 변수와 메소드
+:white_check_mark: static 변수와 메소드<br>
 
 <br>
 
