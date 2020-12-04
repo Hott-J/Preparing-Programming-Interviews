@@ -3,8 +3,8 @@
 ### :one::two: 장 디자인 패턴
 
 <br>
-:white_check_mark: 들어가기 전에
-- static ?
+:white_check_mark: static 변수와 메소드
+
 1. static 변수 <br>
 - 메모리에 고정적으로 할당되어, 프로그램이 종료될 때 해제되는 변수
 ```java
