@@ -82,7 +82,8 @@ B와 C는 둘 다 A의 서브클래스이므로, D의 클래스 계층구조를 
 - 자바의 경우, try - finally 블록을 제공하고 finally 블록안에 closeResource 호출.
 ```java
 public static void useResource(){
-  ResourceHandle r = openResource(); // try 안에 있으면, 만약 자원을 제대로 못받아오면 널 레퍼런스에 대해 close함수가 호출. 이는 오류 및 예측불가 행동 유발
+  ResourceHandle r = openResource(); // try 안에 있으면, 만약 자원을 제대로 못받아오면 널 레퍼런스에 대해 close함수가 호출.
+  //이는 오류 및 예측불가 행동 유발
   try{
     //자원을 이용하여 필요 작업 처리
   }
@@ -90,7 +91,7 @@ public static void useResource(){
     closeResource(r);
   }
 }
-
+```
 
 
 
