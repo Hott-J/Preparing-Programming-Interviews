@@ -71,7 +71,7 @@ public class Test {
 2. 다수 객체로 전환 가능
 3. 동적 바인딩. 싱글톤을 생성하기 위해 실제로 사용하는 클래스를 컴파일할 때가 아닌 실행할 때 결정할 수 있다.
 ```
-- 단점
+- 단점 <br>
 객체 지향 설계 원칙 중에 개방-폐쇄 원칙이란 것이 존재한다.
 만약 싱글톤 인스턴스가 혼자 너무 많은 일을 하거나, 많은 데이터를 공유시키면 다른 클래스들 간의 결합도가 높아지게 되는데, 이때 개방-폐쇄 원칙이 위배된다.
 결합도가 높아지게 되면, 유지보수가 힘들고 테스트도 원활하게 진행할 수 없는 문제점이 발생한다.
@@ -116,3 +116,63 @@ Window w=new WindowBuilder().setVisible(false).setModal(true).setDialog(true).bu
 어떤 애플리케이션에서 콘솔에 디버깅 메시지를 출력하기 위한 로거 클래스를 사용한다. 
 싱글톤 패턴을 써서 이런 로그 기능을 구현하는 방법을 제시해보라.
 ```
+
+```java
+public class Logger{
+	//싱글톤 생성하고 저장
+	private static final Logger instance=new Logger();
+	//다른 사람은 아무도 이 클래스 생성 못하도록 함
+	private Logger(){}
+	//싱글톤 인스턴스 리턴
+	public static Logger getInstance(){return instance;}
+	public void log(String msg){
+		System.out.printIn(System.currentTimeMillis()+":"+msg);
+	}
+}
+```
+Logger 클래스의 인스턴스가 여러 개 생길 수 있는 경우와 이를 예방(클로닝과 객체 직렬화를 생각해본다.)
+
+```
+애플리케이션에서 싱글톤을 쓰는데, 꼭 그게 필요한 것도 아니고 초기화 비용이 너무 많이 든다. 
+이런 상황을 개선할 수 있는 방법은?
+```
+클래스를 불러올 때 싱글톤 인스턴스를  무조건 만들어야 하는 것은 아니다. '게으른 초기화'를 사용한다.
+
+```java
+public class Logger{
+	private static Logger instance=null; //final 키워드 빠짐
+	private Logger(){}
+	public static Logger getInstance(){
+		if(instance==null){
+			instance=new Logger();
+		}
+		return instance;
+	}
+}
+```
+
+위와 같이 코딩하면, 두 스레드에서 getInstance를 동시에 호출 시, 둘다 instance가 아직 초기화되지 않은 것으로 생각하고 각각 인스턴스를 만들려고 할 것이다. 싱글톤에서는 일어나면 안된다.
+
+```java
+public synchronized static Logger getInstance()
+	{if(instance==null){
+		instance=new Logger();
+	}
+	return instance;
+}
+```
+위와 같이, 동기화를 해줘야한다. 성능의 저하는 있다.
+
+:white_check_mark: 데코레이터 vs 상속
+```
+상속 대신 데코레이터 패턴을 써야 하는 이유는 무엇인가?
+```
+데코레이터는 동적으로 행동을 바꿀 수 있다.
+
+:white_check_mark: 효율적인 옵저버 업데이트
+```
+옵저버 패턴에서 옵저버를 효율적으로 업데이트하기 위해 어떤 전략을 취해야 할까?
+```
+가장 흔한 문제가 상태가 너무 자주 바뀔 때 옵저버들을 업데이트하느라 시간을 한참 쓴다.
+잠시 업데이트를 멈추고 바꿀 걸 다 바꾼 다음 업데이트를 다시 켜고 모든 옵저버에게 필요한 내용을 한번에 알려준다.
+옵저버에서 모델의 어떤 부분이 바뀌었는지 알 수 있어야 한다. 옵저버가 대상에게 무엇이 바뀌었는지 다시 물어보는 것보다는 대상에서 업데이트를 알리면서 그 정보까지 넘겨주면 더 낫다.
